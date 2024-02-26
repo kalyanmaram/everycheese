@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView,CreateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView,CreateView,DeleteView
 from .models import Cheese
 
 import logging
@@ -28,4 +29,10 @@ class CheeseCreateView(CreateView):
         'firmness',
         'country_of_origin',
     ]
+
+class CheeseDeleteView(DeleteView):
+    model = Cheese
+    templare_name = '../templates/cheeses/cheese_confirm_delete.html'
+    success_url = reverse_lazy("cheeses:list")
+
  

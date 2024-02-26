@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Delete Cheese{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Delete Cheese</h1>
+    <p>Are you sure you want to delete {{ object.name }}?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Delete</button>
+        <a href="{% url 'cheeses:detail' object.slug %}" class="btn btn-primary">Cancel</a>
+    </form>
+</div>
+{% endblock content %}
