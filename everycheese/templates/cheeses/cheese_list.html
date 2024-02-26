@@ -8,6 +8,7 @@
         <tr>
             <th>Cheese</th>
             <th>Country</th>
+            <th>Commands</th>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +16,9 @@
         <tr>
             <td><a href="{% url 'cheeses:detail' cheese.slug %}">{{ cheese.name }}</a></td>
             <td>{{ cheese.country_of_origin.name|default:"N/A" }}</td>
+            <td>
+                <a href="{% url 'cheeses:delete' cheese.slug %}">Delete</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

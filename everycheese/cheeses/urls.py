@@ -18,4 +18,10 @@ urlpatterns = [
         view=views.CheeseDetailView.as_view(),
         name='detail'
     ),
+    path(
+        route='<slug:slug>/delete/',
+        view=views.CheeseDeleteView.as_view(),
+        name='delete'
+    ),
+
 ]
