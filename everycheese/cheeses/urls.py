@@ -19,6 +19,11 @@ urlpatterns = [
         name='detail'
     ),
     path(
+        route='update/<slug:slug>',
+        view=views.CheeseUpdateView.as_view(),
+        name='update'
+    ),
+    path(
         route='<slug:slug>/delete/',
         view=views.CheeseDeleteView.as_view(),
         name='delete'

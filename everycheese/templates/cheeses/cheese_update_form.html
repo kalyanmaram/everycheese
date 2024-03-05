@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Update Cheese{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <h1>Update Cheese</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a href="{% url 'cheeses:detail' object.slug %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock content %}
