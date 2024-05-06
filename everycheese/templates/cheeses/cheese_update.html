@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Update Cheese{% endblock title %}
+{% block content %}
+<h2>Update Cheese</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {{ rating_form|crispy }}
+  <button type="submit" class="btn btn-primary">Update Cheese</button>
+</form>
+{% endblock content %}

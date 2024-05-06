@@ -43,9 +43,15 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
+    # Raises ImproperlyConfigured Exception
+    # if DATABASE_URL Not in os.environ and
+    # the "default" argument is not defined.
+    # The DATABASE_URL environment variables
+    # expect a value in the following format:
+    # DATABASE_URL=postgres://user:password@hostname_or_ip:port/database_name
     "default": env.db(
         "DATABASE_URL",
-        default=f"sqlite:///{str(BASE_DIR / 'everycheese.db')}",
+        default="postgres:///everycheese",
     )
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
@@ -75,12 +81,15 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "django_countries",
+    "django_countries", # CountryField
 ]
 
 LOCAL_APPS = [
+    "everycheese",
     "everycheese.users.apps.UsersConfig",
-    "everycheese.cheeses.apps.CheesesConfig",
+    "everycheese.cheeses.apps.CheesesConfig", # cheese info app
+    "everycheese.ratings.apps.RatingsConfig",
+    
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -237,7 +246,7 @@ EMAIL_TIMEOUT = 5
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("Your name here", "your-name-here@example.com")]
+ADMINS = [("Kalyan", "kalyan@example.com")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
